@@ -57,7 +57,8 @@ python test.py --test_input_depth_dir=<depth input directory> --test_input_rgb_d
 * See other testing parameters in `test.py`.
 
 ## Results
-![example3](https://git.corp.adobe.com/storage/user/42041/files/815d944f-f379-4fb9-8747-b69bcbe3e00d)
+![example3](https://github.com/adobe-research/layered-depth-refinement/assets/25021245/1d5ee445-a2e6-44e1-9d33-42b805413aee)
+
 [1] Ranftl _et al_., Vision Transformers for Dense Prediction, ICCV, 2021.
 
 More examples can be found on our [project page](https://sooyekim.github.io/MaskDepth/)!
