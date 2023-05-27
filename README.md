@@ -44,13 +44,18 @@ Some example test images are provided in `./images/input/rgb` with initial depth
 Run `test.sh` to refine initial depth maps in `./images/input/depth` using masks in `./images/input/mask` and RGB images in `./images/input/rgb`. Results will be saved in `./images/output`.  
 Different directories can be given as arguments with the following command:
 ```
-
-python test.py --test_input_depth_dir=<depth input directory> --test_input_rgb_dir=<RGB input directory>  --test_input_mask_dir=<mask input directory> --test_output_dir=<output directory>
+python test.py \
+--ckpt_path <ckpt_path> \
+--test_input_rgb_dir <RGB input directory> \
+--test_input_depth_dir <depth input directory> \
+--test_input_mask_dir <mask input directory> \
+--test_output_dir <output directory>
 ```
 
 ### Notes:
 * Hard masks (binary) and soft masks (alpha matte) are both acceptable with ranges in [0, 255].
 * High-resolution outputs can be saved with the flag `--hires`.
+* `--input_size 320` often works better than 512.
 * See other testing parameters in `test.py`.
 
 ## Results
