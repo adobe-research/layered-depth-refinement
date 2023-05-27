@@ -59,7 +59,7 @@ python test.py \
 * See other testing parameters in `test.py`.
 
 ## Results
-![example3](https://github.com/adobe-research/layered-depth-refinement/assets/25021245/1d5ee445-a2e6-44e1-9d33-42b805413aee)
+![example3](https://github.com/adobe-research/layered-depth-refinement/assets/25021245/b6674b53-c204-4dcb-a0d9-fd97bf62997d)
 
 [1] Ranftl _et al_., Vision Transformers for Dense Prediction, ICCV, 2021.
 
