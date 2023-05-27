@@ -28,6 +28,8 @@ import matplotlib.pyplot as plt
 import torch
 from torchvision.transforms import transforms
 
+import MiT_siamese
+
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--ckpt_path', default='./ckpt/maskdepth_model.pkl', help='Checkpoint path')
@@ -42,6 +44,23 @@ parser.add_argument('--colormap', default='inferno', help='Colormap for plt.imsa
 args = parser.parse_args()
 
 
+def load_ckpt(model, ckpt_path, device='cuda', strict=True):
+    """
+    Load checkpoint.
+    """
+    if os.path.exists(ckpt_path):
+        ckpt = torch.load(ckpt_path, map_location=lambda storage, loc: storage)
+        model.load_state_dict(ckpt, strict=strict)
+        del ckpt
+        
+        if device == 'cuda':
+            torch.cuda.empty_cache()
+        print('Model loaded: ', ckpt_path)
+        
+    else:
+        print('Invalid checkpoint path: ', ckpt_path)
+        
+        
 def scale_torch(img, is_rgb=False):
     """
     Scale the image and output it in torch.tensor.
@@ -81,8 +100,9 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # load model
-    model = pickle.load(open(args.ckpt_path, 'rb'))
-    model.eval().to(device).requires_grad_(False).to(device)
+    model = MiT_siamese.RelDepthModel().eval().to(device)
+    load_ckpt(model, args.ckpt_path, device=device, strict=True)
+    
     print('Model loaded from:', args.ckpt_path)
 
     for ind in range(test_data_size):
